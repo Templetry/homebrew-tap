@@ -3,7 +3,6 @@
 class Templetry < Formula
   desc "Project scaffolding for every platform, delivered to any forge (CLI + MCP server)"
   homepage "https://github.com/Templetry"
-  version "1.10.1"
   license "Apache-2.0"
 
   on_macos do

@@ -18,7 +18,7 @@ fi
 version="${tag#v}"
 
 current=""
-[ -f "$FORMULA" ] && current=$(sed -n 's/^  version "\(.*\)"$/\1/p' "$FORMULA" | head -1)
+[ -f "$FORMULA" ] && current=$(grep -o "download/v[0-9][^/]*" "$FORMULA" | head -1 | cut -c11-)
 if [ "$current" = "$version" ]; then
   echo "already at $version"
   exit 0
@@ -45,7 +45,6 @@ cat > "$FORMULA" <<FORMULA_END
 class Templetry < Formula
   desc "Project scaffolding for every platform, delivered to any forge (CLI + MCP server)"
   homepage "https://github.com/Templetry"
-  version "$version"
   license "Apache-2.0"
 
   on_macos do
