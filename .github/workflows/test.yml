@@ -28,14 +28,24 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      # Homebrew ships with the macOS image but not with the Linux one, and
+      # Linux is half of what this formula claims to support.
+      - uses: Homebrew/actions/setup-homebrew@master
+
+      - name: Tap this checkout
+        # Tapping the working copy rather than the published repo, so a pull
+        # request tests the formula in the pull request.
+        run: brew tap Templetry/tap "$GITHUB_WORKSPACE"
+
       - name: Audit
-        run: brew audit --formula ./Formula/templetry.rb
+        # By name, not by path: `brew audit <path>` is disabled.
+        run: brew audit --formula Templetry/tap/templetry
 
       - name: Install
-        run: brew install --formula ./Formula/templetry.rb
+        run: brew install Templetry/tap/templetry
 
       - name: The formula's own test — renders a template and checks the output
-        run: brew test templetry
+        run: brew test Templetry/tap/templetry
 
       - name: Both binaries are on PATH
         run: |
