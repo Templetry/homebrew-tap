@@ -32,10 +32,17 @@ jobs:
       # Linux is half of what this formula claims to support.
       - uses: Homebrew/actions/setup-homebrew@master
 
-      - name: Tap this checkout
-        # Tapping the working copy rather than the published repo, so a pull
-        # request tests the formula in the pull request.
-        run: brew tap Templetry/tap "$GITHUB_WORKSPACE"
+      - name: Link this checkout in as the tap
+        # Not `brew tap`: the name already resolves to the published repo, so
+        # tapping a path is refused as a remote mismatch. Linking the working
+        # copy into Homebrew's tap directory means a pull request tests the
+        # formula in the pull request, not the one already on main.
+        run: |
+          tap_dir="$(brew --repository)/Library/Taps/templetry/homebrew-tap"
+          rm -rf "$tap_dir"
+          mkdir -p "$(dirname "$tap_dir")"
+          ln -s "$GITHUB_WORKSPACE" "$tap_dir"
+          brew tap
 
       - name: Audit
         # By name, not by path: `brew audit <path>` is disabled.
