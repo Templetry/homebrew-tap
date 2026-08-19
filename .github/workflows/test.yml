@@ -1,0 +1,43 @@
+name: Test formula
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  schedule:
+    # Weekly: what breaks here is usually upstream — an asset withdrawn, a
+    # Homebrew change — not a commit in this repository.
+    - cron: "0 9 * * 1"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: test-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  install:
+    name: brew install (${{ matrix.os }})
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [macos-latest, ubuntu-latest]
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Audit
+        run: brew audit --formula ./Formula/templetry.rb
+
+      - name: Install
+        run: brew install --formula ./Formula/templetry.rb
+
+      - name: The formula's own test — renders a template and checks the output
+        run: brew test templetry
+
+      - name: Both binaries are on PATH
+        run: |
+          templetry version
+          command -v templetry-mcp

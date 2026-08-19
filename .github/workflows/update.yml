@@ -1,0 +1,34 @@
+name: Track engine releases
+
+on:
+  schedule:
+    - cron: "0 7 * * *"
+  repository_dispatch:
+    types: [engine-released]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: update
+  cancel-in-progress: false
+
+jobs:
+  bump:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - id: update
+        run: ./bin/update.sh
+
+      - name: Commit
+        if: steps.update.outputs.updated == 'true'
+        env:
+          VERSION: ${{ steps.update.outputs.version }}
+        run: |
+          git config user.name "sebss"
+          git config user.email "sebssgarcia502580@gmail.com"
+          git commit -am "templetry $VERSION"
+          git push
