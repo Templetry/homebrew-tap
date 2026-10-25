@@ -30,7 +30,9 @@ jobs:
 
       # Homebrew ships with the macOS image but not with the Linux one, and
       # Linux is half of what this formula claims to support.
-      - uses: Homebrew/actions/setup-homebrew@master
+      # Pinned to a commit: the `master` ref vanished when upstream moved to
+      # `main`, which took this job down with it.
+      - uses: Homebrew/actions/setup-homebrew@d482da0e602890d3160aade42e72c8556103bf04
 
       - name: Link this checkout in as the tap
         # Not `brew tap`: the name already resolves to the published repo, so

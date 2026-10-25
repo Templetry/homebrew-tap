@@ -11,7 +11,12 @@ FORMULA="Formula/templetry.rb"
 
 tag="${1-}"
 if [ -z "$tag" ]; then
-  tag=$(curl -fsSL "https://api.github.com/repos/$REPO/releases/latest" \
+  # Unauthenticated calls share one rate limit per runner IP, which is how a
+  # daily job that makes one request still gets a 403. Use the token when the
+  # workflow provides one.
+  auth=()
+  [ -n "${GITHUB_TOKEN-}" ] && auth=(-H "Authorization: Bearer $GITHUB_TOKEN")
+  tag=$(curl -fsSL "${auth[@]}" "https://api.github.com/repos/$REPO/releases/latest" \
     | sed -n 's/.*"tag_name": *"\([^"]*\)".*/\1/p' | head -1)
 fi
 [ -n "$tag" ] || { echo "::error::could not determine the latest release"; exit 1; }
