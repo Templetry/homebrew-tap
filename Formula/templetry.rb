@@ -7,44 +7,44 @@ class Templetry < Formula
 
   on_macos do
     on_arm do
-      url "https://github.com/Templetry/engine/releases/download/v1.10.2/templetry-darwin-arm64"
-      sha256 "82aa1c6544c3bc5986ee695cd75dc7f1282b1c000df266a78005c78ee32e31ef"
+      url "https://github.com/Templetry/engine/releases/download/v1.11.1/templetry-darwin-arm64"
+      sha256 "9adc87d2915314e907b2848266e68183127228d8cc1f2b9967f7de39b262c51e"
 
       resource "mcp" do
-        url "https://github.com/Templetry/engine/releases/download/v1.10.2/templetry-mcp-darwin-arm64"
-        sha256 "9327b8c173dc0c3fef9d4e3ef37f38f73ade9e396e745c90ea8a77e2adb4293d"
+        url "https://github.com/Templetry/engine/releases/download/v1.11.1/templetry-mcp-darwin-arm64"
+        sha256 "37066e0eb2556c3bc717905bc0f40ca75fbd32be0e8cdda20dff9056d5ca4b65"
       end
     end
 
     on_intel do
-      url "https://github.com/Templetry/engine/releases/download/v1.10.2/templetry-darwin-amd64"
-      sha256 "8431615c72e377b97e67588968443b5fcf0ebbfa56c84669190b19f483275527"
+      url "https://github.com/Templetry/engine/releases/download/v1.11.1/templetry-darwin-amd64"
+      sha256 "52562a80576047f0783726645b4e91f279a92ff54ba239e9a19a7224941c4119"
 
       resource "mcp" do
-        url "https://github.com/Templetry/engine/releases/download/v1.10.2/templetry-mcp-darwin-amd64"
-        sha256 "79f6305b192bd61f7c10329a782baad3c51504940cc0c05205ff828c2f7b741c"
+        url "https://github.com/Templetry/engine/releases/download/v1.11.1/templetry-mcp-darwin-amd64"
+        sha256 "4eabdb7b681f70704e49fc34dc74f6296737a5317ed92bfd78bfeb4666c8e81f"
       end
     end
   end
 
   on_linux do
     on_arm do
-      url "https://github.com/Templetry/engine/releases/download/v1.10.2/templetry-linux-arm64"
-      sha256 "c9ab08c9e2d9b59d60b0443893adc31cea20b5f134dd7fd411310af5265d1f20"
+      url "https://github.com/Templetry/engine/releases/download/v1.11.1/templetry-linux-arm64"
+      sha256 "b54b99deea45cece50dff05e46188e14432d4187859ae860074defd85efefe35"
 
       resource "mcp" do
-        url "https://github.com/Templetry/engine/releases/download/v1.10.2/templetry-mcp-linux-arm64"
-        sha256 "5f2e7b89a65cc43d2f225c2eeb3740af81b06fc627eca99a7afd08fee1453da5"
+        url "https://github.com/Templetry/engine/releases/download/v1.11.1/templetry-mcp-linux-arm64"
+        sha256 "8a178fcf074d1ea060af289ff12d5ed8ed9c238a9b4e42eab2e85411276e5527"
       end
     end
 
     on_intel do
-      url "https://github.com/Templetry/engine/releases/download/v1.10.2/templetry-linux-amd64"
-      sha256 "f162bdce1c5c7f3f7eb87874396dccd62cbd4ab27a194aa6b8d94c6f637e956d"
+      url "https://github.com/Templetry/engine/releases/download/v1.11.1/templetry-linux-amd64"
+      sha256 "28a2636b2c3e6b33f86259638fe695a5f6ae9d7852b9b1faf17c05673a0ea204"
 
       resource "mcp" do
-        url "https://github.com/Templetry/engine/releases/download/v1.10.2/templetry-mcp-linux-amd64"
-        sha256 "69a5cc63220455fb510439af1fdf68355ce94b70bf1c9efeccae7db66c50821b"
+        url "https://github.com/Templetry/engine/releases/download/v1.11.1/templetry-mcp-linux-amd64"
+        sha256 "a5ad7e3d078de44ed1bf04a01656bbfb2e77d2a719e240edd14848b918996a35"
       end
     end
   end
